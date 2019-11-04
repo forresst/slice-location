@@ -76,13 +76,13 @@ module.exports = (input, options) => {
 
 	let beginIndex = 0;
 	let endIndex = 0;
-	for (let numberLineCurrent = 0; numberLineCurrent < stringLines.length; numberLineCurrent++) {
+	for (const [numberLineCurrent, element] of stringLines.entries()) {
 		// Determine begin index for slice
 		if (numberLineCurrent <= options.beginLine - options.offsetLine) {
 			if (numberLineCurrent === options.beginLine - options.offsetLine) {
 				beginIndex += options.beginColumn - options.offsetColumn;
 			} else {
-				beginIndex += stringLines[numberLineCurrent].length;
+				beginIndex += element.length;
 			}
 		}
 
@@ -91,7 +91,7 @@ module.exports = (input, options) => {
 			if (numberLineCurrent === options.endLine - options.offsetLine) {
 				endIndex += options.endColumn + 1 - options.offsetColumn;
 			} else {
-				endIndex += stringLines[numberLineCurrent].length;
+				endIndex += element.length;
 			}
 		}
 	}
