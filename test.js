@@ -1,5 +1,5 @@
-import test from 'ava';
-import sliceLocatorString from '.';
+const sliceLocatorString = require('.');
+const test = require('ava');
 
 test('Error: without parameter', t => {
 	t.throws(() => {
