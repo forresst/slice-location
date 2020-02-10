@@ -1,5 +1,6 @@
-import sliceLocatorString from '.';
 import test from 'ava';
+// eslint-disable-next-line import/order
+import sliceLocatorString from '.';
 
 test('Error: without parameter', t => {
 	t.throws(() => {
