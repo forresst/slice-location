@@ -1,5 +1,5 @@
-import test from 'ava';
 import sliceLocatorString from '.';
+import test from 'ava';
 
 test('Error: without parameter', t => {
 	t.throws(() => {
