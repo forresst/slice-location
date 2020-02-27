@@ -20,7 +20,7 @@
 		"index.js"
 	],
 	"engines": {
-		"node": ">=8"
+		"node": ">=8.3.0"
 	},
 	"scripts": {
 		"test": "xo && nyc ava"
@@ -36,13 +36,13 @@
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.5",
 		"@commitlint/config-conventional": "^8.3.4",
-		"ava": "^3.3.0",
+		"ava": "^3.4.0",
 		"esm": "^3.2.25",
-		"husky": "^4.2.1",
+		"husky": "^4.2.3",
 		"markdown-magic": "^1.0.0",
 		"markdown-magic-package-json": "^2.0.1",
 		"nyc": "^15.0.0",
-		"xo": "^0.25.3"
+		"xo": "^0.27.2"
 	},
 	"nyc": {
 		"reporter": [
