@@ -1,6 +1,6 @@
 'use strict';
 
-const msgWithOffset = (options, locationName, locationOffset) => {
+const messageWithOffset = (options, locationName, locationOffset) => {
 	return `The ${locationName} option (= ${options[locationName]}) must be greater than or equal to ${locationOffset} option (= ${options[locationOffset]})`;
 };
 
@@ -44,19 +44,19 @@ const checkAndInitOptions = (input, options, stringLines) => {
 	}
 
 	if (options.beginLine - options.offsetLine < 0) {
-		throw new TypeError(msgWithOffset(options, 'beginLine', 'offsetLine'));
+		throw new TypeError(messageWithOffset(options, 'beginLine', 'offsetLine'));
 	}
 
 	if (options.endLine - options.offsetLine < 0) {
-		throw new TypeError(msgWithOffset(options, 'endLine', 'offsetLine'));
+		throw new TypeError(messageWithOffset(options, 'endLine', 'offsetLine'));
 	}
 
 	if (options.beginColumn - options.offsetColumn < 0) {
-		throw new TypeError(msgWithOffset(options, 'beginColumn', 'offsetColumn'));
+		throw new TypeError(messageWithOffset(options, 'beginColumn', 'offsetColumn'));
 	}
 
 	if (options.endColumn - options.offsetColumn < 0) {
-		throw new TypeError(msgWithOffset(options, 'endColumn', 'offsetColumn'));
+		throw new TypeError(messageWithOffset(options, 'endColumn', 'offsetColumn'));
 	}
 
 	return options;
