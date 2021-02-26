@@ -39,7 +39,7 @@
 		"ava": "^3.5.0",
 		"esm": "^3.2.25",
 		"husky": "^4.2.3",
-		"markdown-magic": "^1.0.0",
+		"markdown-magic": "^2.0.0",
 		"markdown-magic-package-json": "^2.0.1",
 		"nyc": "^15.0.0",
 		"xo": "^0.28.0"
