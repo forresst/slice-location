@@ -79,20 +79,12 @@ module.exports = (input, options) => {
 	for (const [numberLineCurrent, element] of stringLines.entries()) {
 		// Determine begin index for slice
 		if (numberLineCurrent <= options.beginLine - options.offsetLine) {
-			if (numberLineCurrent === options.beginLine - options.offsetLine) {
-				beginIndex += options.beginColumn - options.offsetColumn;
-			} else {
-				beginIndex += element.length;
-			}
+			beginIndex += numberLineCurrent === options.beginLine - options.offsetLine ? options.beginColumn - options.offsetColumn : element.length;
 		}
 
 		// Determine end index for slice
 		if (numberLineCurrent <= options.endLine - options.offsetLine) {
-			if (numberLineCurrent === options.endLine - options.offsetLine) {
-				endIndex += options.endColumn + 1 - options.offsetColumn;
-			} else {
-				endIndex += element.length;
-			}
+			endIndex += numberLineCurrent === options.endLine - options.offsetLine ? options.endColumn + 1 - options.offsetColumn : element.length;
 		}
 	}
 
