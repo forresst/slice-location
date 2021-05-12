@@ -42,7 +42,7 @@
 		"markdown-magic": "^2.0.0",
 		"markdown-magic-package-json": "^2.0.1",
 		"nyc": "^15.0.0",
-		"xo": "^0.39.1"
+		"xo": "^0.40.1"
 	},
 	"nyc": {
 		"reporter": [
