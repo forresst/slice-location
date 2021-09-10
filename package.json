@@ -9,6 +9,10 @@
 		"type": "git",
 		"url": "git+https://github.com/forresst/slice-location.git"
 	},
+	"files": [
+		"index.js",
+		"index.d.ts"
+	],
 	"bugs": {
 		"url": "https://github.com/forresst/slice-location/issues"
 	},
@@ -21,7 +25,7 @@
 		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
 	},
 	"scripts": {
-		"test": "xo && c8 --reporter=html --reporter=text ava && tsd",
+		"test": "xo && ava && tsd",
 		"test:xo": "xo",
 		"test:tsd": "tsd",
 		"coverage": "c8 --reporter=html --reporter=text ava"
