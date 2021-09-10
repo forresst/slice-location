@@ -28,7 +28,7 @@
 		"test": "xo && c8 --reporter=html --reporter=text ava && tsd",
 		"test:xo": "xo",
 		"test:tsd": "tsd",
-		"coverage": "c8 --reporter=html --reporter=text ava"
+		"coverage": "c8 report --reporter=text-lcov > ./coverage/lcov.info"
 	},
 	"keywords": [
 		"slice",
