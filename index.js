@@ -1,10 +1,6 @@
-'use strict';
+const messageWithOffset = (options, locationName, locationOffset) => `The ${locationName} option (= ${options[locationName]}) must be greater than or equal to ${locationOffset} option (= ${options[locationOffset]})`;
 
-const messageWithOffset = (options, locationName, locationOffset) => {
-	return `The ${locationName} option (= ${options[locationName]}) must be greater than or equal to ${locationOffset} option (= ${options[locationOffset]})`;
-};
-
-const checkAndInitOptions = (input, options, stringLines) => {
+const checkAndInitOptions = (options, stringLines) => {
 	if (options && typeof options !== 'object') {
 		throw new TypeError(`Expected a object in the second parameter, got ${typeof options}`);
 	}
@@ -16,7 +12,7 @@ const checkAndInitOptions = (input, options, stringLines) => {
 		endColumn: stringLines[stringLines.length - 1].length - 1,
 		offsetLine: 0,
 		offsetColumn: 0,
-		...options
+		...options,
 	};
 
 	if (typeof options.beginLine !== 'number') {
@@ -62,7 +58,7 @@ const checkAndInitOptions = (input, options, stringLines) => {
 	return options;
 };
 
-module.exports = (input, options) => {
+export default function sliceLocation(input, options = {}) {
 	if (typeof input !== 'string') {
 		throw new TypeError(`Expected a string in the first parameter, got ${typeof input}`);
 	}
@@ -72,7 +68,7 @@ module.exports = (input, options) => {
 	}
 
 	const stringLines = input.split(/(.*\r\n|.*\n|.*\r)/m).filter(element => element !== '');
-	options = checkAndInitOptions(input, options, stringLines);
+	options = checkAndInitOptions(options, stringLines);
 
 	let beginIndex = 0;
 	let endIndex = 0;
@@ -89,4 +85,4 @@ module.exports = (input, options) => {
 	}
 
 	return input.slice(beginIndex, endIndex);
-};
+}

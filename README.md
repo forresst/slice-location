@@ -19,7 +19,6 @@ String slices by line and column indexes
 
 ## Table of Contents
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (TOC) -->
 - [Installation](#installation)
 - [Usage](#usage)
   * [Node.js](#nodejs)
@@ -30,7 +29,6 @@ String slices by line and column indexes
     + [return](#return)
     + [Example](#example)
 - [LICENSE](#license)
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->
 
 ## Installation
 
@@ -128,6 +126,4 @@ The string sliced.
 
 ## LICENSE
 
-<!-- ⛔️ AUTO-GENERATED-CONTENT:START (PKGJSON:template=${license}) -->
 MIT
-<!-- ⛔️ AUTO-GENERATED-CONTENT:END -->

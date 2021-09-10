@@ -6,7 +6,7 @@ test('Error: without parameter', t => {
 		sliceLocatorString();
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a string in the first parameter, got undefined'
+		message: 'Expected a string in the first parameter, got undefined',
 	});
 });
 
@@ -15,7 +15,7 @@ test('Error: first parameter is not a String', t => {
 		sliceLocatorString(123);
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a string in the first parameter, got number'
+		message: 'Expected a string in the first parameter, got number',
 	});
 });
 
@@ -24,7 +24,7 @@ test('Error: second parameter is not a Object', t => {
 		sliceLocatorString('Hello', 123);
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a object in the second parameter, got number'
+		message: 'Expected a object in the second parameter, got number',
 	});
 });
 
@@ -33,7 +33,7 @@ test('Error: beginLine option is not a number', t => {
 		sliceLocatorString('Hello', {beginLine: 'AAA'});
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a number in the beginLine option, got string'
+		message: 'Expected a number in the beginLine option, got string',
 	});
 });
 
@@ -42,7 +42,7 @@ test('Error: beginColumn option is not a number', t => {
 		sliceLocatorString('Hello', {beginColumn: 'AAA'});
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a number in the beginColumn option, got string'
+		message: 'Expected a number in the beginColumn option, got string',
 	});
 });
 
@@ -51,7 +51,7 @@ test('Error: endLine option is not a number', t => {
 		sliceLocatorString('Hello', {endLine: 'AAA'});
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a number in the endLine option, got string'
+		message: 'Expected a number in the endLine option, got string',
 	});
 });
 
@@ -60,7 +60,7 @@ test('Error: endColumn option is not a number', t => {
 		sliceLocatorString('Hello', {endColumn: 'AAA'});
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a number in the endColumn option, got string'
+		message: 'Expected a number in the endColumn option, got string',
 	});
 });
 
@@ -69,7 +69,7 @@ test('Error: offsetLine option is not a number', t => {
 		sliceLocatorString('Hello', {offsetLine: 'AAA'});
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a number in the offsetLine option, got string'
+		message: 'Expected a number in the offsetLine option, got string',
 	});
 });
 
@@ -78,7 +78,7 @@ test('Error: offsetColumn option is not a number', t => {
 		sliceLocatorString('Hello', {offsetColumn: 'AAA'});
 	}, {
 		instanceOf: TypeError,
-		message: 'Expected a number in the offsetColumn option, got string'
+		message: 'Expected a number in the offsetColumn option, got string',
 	});
 });
 
@@ -87,7 +87,7 @@ test('Error: inconsistency between the beginLine and offsetLine options', t => {
 		sliceLocatorString('Hello', {beginLine: 1, offsetLine: 3});
 	}, {
 		instanceOf: TypeError,
-		message: 'The beginLine option (= 1) must be greater than or equal to offsetLine option (= 3)'
+		message: 'The beginLine option (= 1) must be greater than or equal to offsetLine option (= 3)',
 	});
 });
 
@@ -96,7 +96,7 @@ test('Error: inconsistency between the endLine and offsetLine options', t => {
 		sliceLocatorString('Hello', {beginLine: 4, endLine: 1, offsetLine: 3});
 	}, {
 		instanceOf: TypeError,
-		message: 'The endLine option (= 1) must be greater than or equal to offsetLine option (= 3)'
+		message: 'The endLine option (= 1) must be greater than or equal to offsetLine option (= 3)',
 	});
 });
 
@@ -105,7 +105,7 @@ test('Error: inconsistency between the beginColumn and offsetColumn options', t 
 		sliceLocatorString('Hello', {beginColumn: 1, offsetColumn: 3});
 	}, {
 		instanceOf: TypeError,
-		message: 'The beginColumn option (= 1) must be greater than or equal to offsetColumn option (= 3)'
+		message: 'The beginColumn option (= 1) must be greater than or equal to offsetColumn option (= 3)',
 	});
 });
 
@@ -114,7 +114,7 @@ test('Error: inconsistency between the endColumn and offsetColumn options', t =>
 		sliceLocatorString('Hello', {beginColumn: 4, endColumn: 1, offsetColumn: 3});
 	}, {
 		instanceOf: TypeError,
-		message: 'The endColumn option (= 1) must be greater than or equal to offsetColumn option (= 3)'
+		message: 'The endColumn option (= 1) must be greater than or equal to offsetColumn option (= 3)',
 	});
 });
 
@@ -178,7 +178,7 @@ test('Error: Filled string with offsetLine option big positive', t => {
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
-		message: 'The beginLine option (= 0) must be greater than or equal to offsetLine option (= 100)'
+		message: 'The beginLine option (= 0) must be greater than or equal to offsetLine option (= 100)',
 	});
 });
 
@@ -188,7 +188,7 @@ test('Error: Filled string with offsetColumn option big positive', t => {
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
-		message: 'The beginColumn option (= 5) must be greater than or equal to offsetColumn option (= 100)'
+		message: 'The beginColumn option (= 5) must be greater than or equal to offsetColumn option (= 100)',
 	});
 });
 
@@ -208,7 +208,7 @@ test('Error: Filled string with all inconsistent offset options *', t => {
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
-		message: 'The beginLine option (= 0) must be greater than or equal to offsetLine option (= 1)'
+		message: 'The beginLine option (= 0) must be greater than or equal to offsetLine option (= 1)',
 	});
 });
 
@@ -218,7 +218,7 @@ test('Error: Filled string with all inconsistent options', t => {
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
-		message: 'The beginLine option (= 4) must be greater than or equal to offsetLine option (= 9)'
+		message: 'The beginLine option (= 4) must be greater than or equal to offsetLine option (= 9)',
 	});
 });
 
