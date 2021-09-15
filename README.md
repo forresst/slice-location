@@ -2,7 +2,6 @@
 
 String slices by line and column indexes
 
-[![Travis Build Status](https://travis-ci.org/forresst/slice-location.svg?branch=master)](https://travis-ci.org/forresst/slice-location)
 [![Coverage Status](https://coveralls.io/repos/github/forresst/slice-location/badge.svg)](https://coveralls.io/github/forresst/slice-location)
 [![version](https://img.shields.io/npm/v/slice-location.svg?style=flat-square)](https://www.npmjs.com/package/slice-location)
 [![node-version](https://img.shields.io/badge/node-%3E%3D%208.0-orange.svg?style=flat-square)](https://nodejs.org)
@@ -43,7 +42,7 @@ npm install --save-dev slice-location
 ### Node.js
 
 ```js
-const sliceLocation = require('slice-location');
+import sliceLocation from 'slice-location';
 
 const inputString = `Line 1
 Line 2
@@ -107,7 +106,7 @@ The string sliced.
 
 > ```js
 >
-> const sliceLocation = require('slice-location');
+> import sliceLocation from 'slice-location';
 >
 > const inputString = `Line 1
 > Line 2
