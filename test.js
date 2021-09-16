@@ -261,3 +261,72 @@ test('String with line and column reverse location', t => {
 	const options = {beginLine: 2, beginColumn: 7, endLine: 1, endColumn: 2, offsetLine: 1, offsetColumn: 1};
 	t.is(sliceLocatorString('123456\r\nabcdef\nABCDEF\nGHIJKL\n\nMNOPQR', options), '');
 });
+
+test('String without options endLine, endColumn, offsetLine, offsetColumn and without \\n in last line', t => {
+	const options = {beginLine: 3, beginColumn: 5};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), '4\nLine 5\n\nLine 7');
+});
+
+test('String without options endLine, endColumn, offsetLine, offsetColumn and with \\n in last line', t => {
+	const options = {beginLine: 3, beginColumn: 5};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7\n', options), '4\nLine 5\n\nLine 7\n');
+});
+
+test('String without options offsetLine, offsetColumn and without \\n in last line', t => {
+	const options = {beginLine: 4, beginColumn: 6, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), '4\nLine 5\n\nLine 7');
+});
+
+test('String without options offsetLine, offsetColumn and with \\n in last line', t => {
+	const options = {beginLine: 4, beginColumn: 6, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7\n', options), '4\nLine 5\n\nLine 7\n');
+});
+
+test('String without options BeginLine, BeginColumn, offsetLine, offsetColumn and without \\n in first character', t => {
+	const options = {endLine: 4, endColumn: 4};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine ');
+});
+
+test('endColumn greater length line', t => {
+	const options = {endLine: 4, endColumn: 10};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5\n');
+});
+
+test('endColumn equal length line', t => {
+	const options = {endLine: 4, endColumn: 6};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5\n');
+});
+
+test('endColumn lower length line', t => {
+	const options = {endLine: 4, endColumn: 5};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5');
+});
+
+test('endColumn greater length line and offset 1', t => {
+	const options = {endLine: 5, endColumn: 11, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5\n');
+});
+
+test('endColumn equal length line and offset 1', t => {
+	const options = {endLine: 5, endColumn: 7, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5\n');
+});
+
+test('endColumn lower length line and offset 1', t => {
+	const options = {endLine: 5, endColumn: 6, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5');
+});
+
+test('String without options BeginLine, BeginColumn, offsetLine, offsetColumn and with \\n in first character', t => {
+	const options = {endLine: 4, endColumn: 4};
+	t.is(sliceLocatorString('\nLine 2\nLine 3\n\nLine 5\nLine 6\n\nLine 8\n', options), '\nLine 2\nLine 3\n\nLine ');
+});
+test('String without options BeginLine, BeginColumn and without \\n in first character', t => {
+	const options = {endLine: 4, endColumn: 5, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine ');
+});
+
+test('String without options BeginLine, BeginColumn and with \\n in first character', t => {
+	const options = {endLine: 4, endColumn: 5, offsetLine: 1, offsetColumn: 1};
+	t.is(sliceLocatorString('\nLine 2\nLine 3\n\nLine 5\nLine 6\n\nLine 8\n', options), '\nLine 2\nLine 3\n\n');
+});

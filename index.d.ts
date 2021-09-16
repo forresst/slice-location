@@ -23,7 +23,7 @@ Line 7
 `;
 
 const options = {beginLine: 4, beginColumn: 1, endLine: 5, endColumn: 2, offsetLine: 1, offsetColumn: 1};
-console.log(sliceLocation(inputString));
+console.log(sliceLocation(inputString, options));
 //=> Line 4
 //=> Li
 ```
