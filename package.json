@@ -1,6 +1,6 @@
 {
 	"name": "slice-location",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "String slices by line and column indexes",
 	"license": "MIT",
 	"type": "module",
