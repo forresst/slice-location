@@ -1,4 +1,4 @@
-export interface sliceOptions {
+export interface SliceOptions {
 	beginLine?: number;
 	beginColumn?: number;
 	endLine?: number;
@@ -28,4 +28,4 @@ console.log(sliceLocation(inputString, options));
 //=> Li
 ```
 */
-export default function sliceLocation(input: string, options: sliceOptions): string;
+export default function sliceLocation(input: string, options: SliceOptions): string;
