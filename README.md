@@ -4,7 +4,7 @@ String slices by line and column indexes
 
 [![Coverage Status](https://coveralls.io/repos/github/forresst/slice-location/badge.svg)](https://coveralls.io/github/forresst/slice-location)
 [![version](https://img.shields.io/npm/v/slice-location.svg?style=flat-square)](https://www.npmjs.com/package/slice-location)
-[![node-version](https://img.shields.io/badge/node-%3E%3D%208.0-orange.svg?style=flat-square)](https://nodejs.org)
+[![node-version](https://img.shields.io/badge/node-%3E%3D%2018.0-orange.svg?style=flat-square)](https://nodejs.org)
 [![downloads](https://img.shields.io/npm/dm/slice-location.svg?style=flat-square)](http://npm-stat.com/charts.html?package=slice-location)
 
 [![MIT License](https://img.shields.io/npm/l/slice-location.svg?style=flat-square)](https://github.com/forresst/slice-location/blob/master/LICENSE)

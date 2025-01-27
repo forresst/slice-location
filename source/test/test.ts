@@ -1,85 +1,14 @@
 import test from 'ava';
-import sliceLocatorString from './index.js';
+import sliceLocatorString from '../index.js';
 
-test('Error: without parameter', t => {
-	t.throws(() => {
-		sliceLocatorString();
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a string in the first parameter, got undefined',
-	});
+test('With string empty and object empty', t => {
+	const options = {};
+	t.is(sliceLocatorString('', options), '');
 });
 
-test('Error: first parameter is not a String', t => {
-	t.throws(() => {
-		sliceLocatorString(123);
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a string in the first parameter, got number',
-	});
-});
-
-test('Error: second parameter is not a Object', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', 123);
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a object in the second parameter, got number',
-	});
-});
-
-test('Error: beginLine option is not a number', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', {beginLine: 'AAA'});
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a number in the beginLine option, got string',
-	});
-});
-
-test('Error: beginColumn option is not a number', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', {beginColumn: 'AAA'});
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a number in the beginColumn option, got string',
-	});
-});
-
-test('Error: endLine option is not a number', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', {endLine: 'AAA'});
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a number in the endLine option, got string',
-	});
-});
-
-test('Error: endColumn option is not a number', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', {endColumn: 'AAA'});
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a number in the endColumn option, got string',
-	});
-});
-
-test('Error: offsetLine option is not a number', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', {offsetLine: 'AAA'});
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a number in the offsetLine option, got string',
-	});
-});
-
-test('Error: offsetColumn option is not a number', t => {
-	t.throws(() => {
-		sliceLocatorString('Hello', {offsetColumn: 'AAA'});
-	}, {
-		instanceOf: TypeError,
-		message: 'Expected a number in the offsetColumn option, got string',
-	});
+test('With string contents and object empty', t => {
+	const options = {};
+	t.is(sliceLocatorString('133', options), '133');
 });
 
 test('Error: inconsistency between the beginLine and offsetLine options', t => {
@@ -123,27 +52,37 @@ test('Empty string without option', t => {
 });
 
 test('Empty string with all location options', t => {
-	const options = {beginLine: 0, beginColumn: 0, endLine: 0, endColumn: 0};
+	const options = {
+		beginLine: 0, beginColumn: 0, endLine: 0, endColumn: 0,
+	};
 	t.is(sliceLocatorString('', options), '');
 });
 
 test('Empty string with all inconsistent location options', t => {
-	const options = {beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2};
+	const options = {
+		beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2,
+	};
 	t.is(sliceLocatorString('', options), '');
 });
 
 test('Empty string with all inconsistent offset options', t => {
-	const options = {beginLine: 0, beginColumn: 0, endLine: 0, endColumn: 0, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 0, beginColumn: 0, endLine: 0, endColumn: 0, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('', options), '');
 });
 
 test('Empty string with all inconsistent options', t => {
-	const options = {beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2, offsetLine: 9, offsetColumn: 9};
+	const options = {
+		beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2, offsetLine: 9, offsetColumn: 9,
+	};
 	t.is(sliceLocatorString('', options), '');
 });
 
 test('Empty string with offsetLine option negative', t => {
-	const options = {beginLine: 0, beginColumn: 0, endLine: 0, endColumn: 0, offsetLine: -1};
+	const options = {
+		beginLine: 0, beginColumn: 0, endLine: 0, endColumn: 0, offsetLine: -1,
+	};
 	t.is(sliceLocatorString('', options), '');
 });
 
@@ -153,28 +92,38 @@ test('Filled string without option', t => {
 });
 
 test('Filled string with all location options', t => {
-	const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5};
+	const options = {
+		beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5,
+	};
 	t.is(sliceLocatorString('0123456789', options), '5');
 });
 
 test('Filled string with all inconsistent location options', t => {
-	const options = {beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2};
+	const options = {
+		beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2,
+	};
 	t.is(sliceLocatorString('0123456789', options), '');
 });
 
 test('Filled string with offsetLine option negative', t => {
-	const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: -1};
+	const options = {
+		beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: -1,
+	};
 	t.is(sliceLocatorString('0123456789', options), '');
 });
 
 test('Filled string with offsetColumn option negative', t => {
-	const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetColumn: -1};
+	const options = {
+		beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetColumn: -1,
+	};
 	t.is(sliceLocatorString('0123456789', options), '6');
 });
 
 test('Error: Filled string with offsetLine option big positive', t => {
 	t.throws(() => {
-		const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: 100};
+		const options = {
+			beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: 100,
+		};
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
@@ -184,7 +133,9 @@ test('Error: Filled string with offsetLine option big positive', t => {
 
 test('Error: Filled string with offsetColumn option big positive', t => {
 	t.throws(() => {
-		const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetColumn: 100};
+		const options = {
+			beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetColumn: 100,
+		};
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
@@ -193,18 +144,24 @@ test('Error: Filled string with offsetColumn option big positive', t => {
 });
 
 test('Filled string with offsetLine option big negative', t => {
-	const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: -100};
+	const options = {
+		beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: -100,
+	};
 	t.is(sliceLocatorString('0123456789', options), '');
 });
 
 test('Filled string with offsetColumn option big negative', t => {
-	const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetColumn: -100};
+	const options = {
+		beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetColumn: -100,
+	};
 	t.is(sliceLocatorString('0123456789', options), '');
 });
 
 test('Error: Filled string with all inconsistent offset options *', t => {
 	t.throws(() => {
-		const options = {beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: 1, offsetColumn: 1};
+		const options = {
+			beginLine: 0, beginColumn: 5, endLine: 0, endColumn: 5, offsetLine: 1, offsetColumn: 1,
+		};
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
@@ -214,7 +171,9 @@ test('Error: Filled string with all inconsistent offset options *', t => {
 
 test('Error: Filled string with all inconsistent options', t => {
 	t.throws(() => {
-		const options = {beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2, offsetLine: 9, offsetColumn: 9};
+		const options = {
+			beginLine: 4, beginColumn: 6, endLine: 1, endColumn: 2, offsetLine: 9, offsetColumn: 9,
+		};
 		sliceLocatorString('0123456789', options);
 	}, {
 		instanceOf: TypeError,
@@ -238,27 +197,37 @@ test('String multiline without option with \\r\\n in the string', t => {
 });
 
 test('String with other option', t => {
-	const options = {beginLine: 1, beginColumn: 1, endLine: 1, endColumn: 6};
+	const options = {
+		beginLine: 1, beginColumn: 1, endLine: 1, endColumn: 6,
+	};
 	t.is(sliceLocatorString('123456\r\nabcdef\nABCDEF\nGHIJKL\n\nMNOPQR', options), 'bcdef\n');
 });
 
 test('String with other option and offset', t => {
-	const options = {beginLine: 2, beginColumn: 2, endLine: 2, endColumn: 7, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 2, beginColumn: 2, endLine: 2, endColumn: 7, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('123456\r\nabcdef\nABCDEF\nGHIJKL\n\nMNOPQR', options), 'bcdef\n');
 });
 
 test('String with column reverse location', t => {
-	const options = {beginLine: 2, beginColumn: 7, endLine: 2, endColumn: 2, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 2, beginColumn: 7, endLine: 2, endColumn: 2, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('123456\r\nabcdef\nABCDEF\nGHIJKL\n\nMNOPQR', options), '');
 });
 
 test('String with line reverse location', t => {
-	const options = {beginLine: 2, beginColumn: 2, endLine: 1, endColumn: 7, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 2, beginColumn: 2, endLine: 1, endColumn: 7, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('123456\r\nabcdef\nABCDEF\nGHIJKL\n\nMNOPQR', options), '');
 });
 
 test('String with line and column reverse location', t => {
-	const options = {beginLine: 2, beginColumn: 7, endLine: 1, endColumn: 2, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 2, beginColumn: 7, endLine: 1, endColumn: 2, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('123456\r\nabcdef\nABCDEF\nGHIJKL\n\nMNOPQR', options), '');
 });
 
@@ -273,12 +242,16 @@ test('String without options endLine, endColumn, offsetLine, offsetColumn and wi
 });
 
 test('String without options offsetLine, offsetColumn and without \\n in last line', t => {
-	const options = {beginLine: 4, beginColumn: 6, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 4, beginColumn: 6, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), '4\nLine 5\n\nLine 7');
 });
 
 test('String without options offsetLine, offsetColumn and with \\n in last line', t => {
-	const options = {beginLine: 4, beginColumn: 6, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		beginLine: 4, beginColumn: 6, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7\n', options), '4\nLine 5\n\nLine 7\n');
 });
 
@@ -303,17 +276,23 @@ test('endColumn lower length line', t => {
 });
 
 test('endColumn greater length line and offset 1', t => {
-	const options = {endLine: 5, endColumn: 11, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		endLine: 5, endColumn: 11, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5\n');
 });
 
 test('endColumn equal length line and offset 1', t => {
-	const options = {endLine: 5, endColumn: 7, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		endLine: 5, endColumn: 7, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5\n');
 });
 
 test('endColumn lower length line and offset 1', t => {
-	const options = {endLine: 5, endColumn: 6, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		endLine: 5, endColumn: 6, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine 4\nLine 5');
 });
 
@@ -322,11 +301,29 @@ test('String without options BeginLine, BeginColumn, offsetLine, offsetColumn an
 	t.is(sliceLocatorString('\nLine 2\nLine 3\n\nLine 5\nLine 6\n\nLine 8\n', options), '\nLine 2\nLine 3\n\nLine ');
 });
 test('String without options BeginLine, BeginColumn and without \\n in first character', t => {
-	const options = {endLine: 4, endColumn: 5, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		endLine: 4, endColumn: 5, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('Line 1\nLine 2\n\nLine 4\nLine 5\n\nLine 7', options), 'Line 1\nLine 2\n\nLine ');
 });
 
 test('String without options BeginLine, BeginColumn and with \\n in first character', t => {
-	const options = {endLine: 4, endColumn: 5, offsetLine: 1, offsetColumn: 1};
+	const options = {
+		endLine: 4, endColumn: 5, offsetLine: 1, offsetColumn: 1,
+	};
 	t.is(sliceLocatorString('\nLine 2\nLine 3\n\nLine 5\nLine 6\n\nLine 8\n', options), '\nLine 2\nLine 3\n\n');
+});
+
+test('String with options BeginLine and EndLine only', t => {
+	const options = {
+		beginLine: 2, endLine: 4,
+	};
+	t.is(sliceLocatorString('Line 1\nLine 2\nLine 3\n\nLine 5\nLine 6\n\nLine 8\n', options), 'Line 3\n\nLine 5\n');
+});
+
+test('String with options BeginLine, EndLine et OffsetLine only', t => {
+	const options = {
+		beginLine: 3, endLine: 5, offsetLine: 1,
+	};
+	t.is(sliceLocatorString('Line 1\nLine 2\nLine 3\n\nLine 5\nLine 6\n\nLine 8\n', options), 'Line 3\n\nLine 5\n');
 });

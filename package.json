@@ -1,18 +1,25 @@
 {
 	"name": "slice-location",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"description": "String slices by line and column indexes",
 	"license": "MIT",
 	"type": "module",
-	"exports": "./index.js",
+	"exports": {
+		"types": "./dist/index.d.ts",
+		"default": "./dist/index.js"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"files": [
+		"dist/*",
+		"!dist/test"
+	],
+	"types": "dist/index.d.ts",
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/forresst/slice-location.git"
 	},
-	"files": [
-		"index.js",
-		"index.d.ts"
-	],
 	"bugs": {
 		"url": "https://github.com/forresst/slice-location/issues"
 	},
@@ -21,14 +28,10 @@
 		"name": "Stéphane Reynaud",
 		"url": "https://github.com/forresst"
 	},
-	"engines": {
-		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-	},
 	"scripts": {
-		"test": "xo && c8 --reporter=html --reporter=text ava && tsd",
-		"test:xo": "xo",
-		"test:tsd": "tsd",
-		"coverage": "c8 report --reporter=text-lcov > ./coverage/lcov.info"
+		"test": "npm run build && xo && c8 ava",
+		"build": "del-cli dist && tsc",
+		"prepublishOnly": "npm run build"
 	},
 	"keywords": [
 		"slice",
@@ -38,15 +41,29 @@
 		"location"
 	],
 	"devDependencies": {
-		"ava": "^5.2.0",
-		"c8": "^7.9.0",
-		"tsd": "^0.28.0",
-		"xo": "^0.50.0"
+		"@ava/typescript": "^5.0.0",
+		"@sindresorhus/tsconfig": "^7.0.0",
+		"ava": "^6.2.0",
+		"c8": "^10.1.3",
+		"del-cli": "^6.0.0",
+		"typescript": "^5.7.2",
+		"xo": "^0.60.0"
 	},
-	"nyc": {
+	"c8": {
+		"include": [
+			"dist/*.js"
+		],
 		"reporter": [
 			"lcov",
 			"text"
 		]
+	},
+	"ava": {
+		"typescript": {
+			"rewritePaths": {
+				"source/": "dist/"
+			},
+			"compile": false
+		}
 	}
 }
